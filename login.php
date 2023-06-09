@@ -39,14 +39,18 @@
                             </div>
                             <div class="form-group">
                                 <label for="password">Password:</label>
+                                
                                 <input type="password" class="form-control" id="password" name="password" oninput="this.value= this.value.replace(/\s/g, '')"required>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block">Login</button>
+                            <label for="forgotpassword"><a href="forgot.php">Forgot password?</a></label>
+
                         </form>
                     </div>
                     <div class="card-footer">
                         <p class="text-center">Don't have an account?</p>
                         <p class="text-center"><a href="register.php">Register here.</a></p>
+
                     </div>
                 </div>
             </div>
@@ -118,6 +122,16 @@ $conn->close();
 
 <style>
 
+/* .forgot-btn{
+    margin-top:10px;
+    text-align:center;
+    border:none;
+    background-color: transparent;
+    outline: none;
+    font-weight:450;
+    cursor:pointer;
+} */
+
 .logo {
     width: 80px; 
     height: auto; 
@@ -140,10 +154,10 @@ body{
 }
 
 .card {
-    box-shadow: 15px 15px black;
+    box-shadow: 15px 15px 10px rgba(0, 0, 0, 0.8);
     border-radius: 10px;
-    
 }
+
 .card-header h3 {
     font-size: 2.5rem;
     font-family: Arial, Helvetica, sans-serif;

@@ -192,7 +192,7 @@ $username = $_SESSION['username'];
     background-position: center;
     background-size: cover ;
     position: relative;
-    height: 21vh;
+    height: 26.7vh;
     
 }
 nav {
@@ -212,7 +212,7 @@ nav img {
 .nav-links ul li {
     list-style: none;
     display: inline-block;
-    padding: 20px 12px;
+    padding: 35px 12px;
     position: relative;
 }
 .nav-links ul li a {
@@ -272,6 +272,7 @@ nav .bi {
     }
     .nav-links ul li {
         display: block;
+        padding: 20px 12px;
     }
     .nav-links {
         position: absolute;

@@ -133,11 +133,12 @@ body{
 
 }
 
+
 .card {
-    box-shadow: 15px 15px black;
+    box-shadow: 15px 15px 10px rgba(0, 0, 0, 0.8);
     border-radius: 10px;
-    
 }
+
 .card-header h3 {
     font-size: 2.5rem;
     font-family: Arial, Helvetica, sans-serif;

@@ -1,4 +1,5 @@
 <?php
+include 'connection.php';
 session_start();
 if(empty($_SESSION['username']))
 {
@@ -10,7 +11,7 @@ $username = $_SESSION['username'];
 }
 
 
-include 'connection.php';
+
 
 // Fetch the username from the database
 $sql = "SELECT username FROM users WHERE username = '$username'";
@@ -24,25 +25,11 @@ if ($row = mysqli_fetch_assoc($result)) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HOME PAGE</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
-        integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous" /> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script> -->
-<!-- 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
 
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BDMS WEBSITE</title>
-    <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
@@ -281,6 +268,50 @@ nav .bi {
     padding: 15px 0 25px;
 } 
 
+.contact {
+    margin: 100px auto;
+    width: 80%;
+    height:180px ;
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(contact.jpg);
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    text-align: center;
+    padding: 100px 0;
+    color: white;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5); /* Added box shadow */
+}
+
+.contact h2 {
+    font-size: 36px; /* Increased font size */
+}
+
+.contact h4 {
+    font-size: 20px; /* Increased font size */
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    font-size: 18px; /* Increased font size */
+}
+
+.contact-list li {
+    margin-bottom: 10px;
+}
+
+@media(max-width: 700px) {
+    .contact h2 {
+        font-size: 24px;
+    }
+    .contact h4 {
+        font-size: 16px;
+    }
+    .contact-list {
+        font-size: 14px;
+    }
+}
 
 
 
@@ -291,6 +322,29 @@ nav .bi {
 
 
 </section>
+
+
+<section id="contact" class="contact">
+            <div class="contact-text">
+                <hr color="red">
+                <hr color="red">
+                <h2>CONTACT US</h2>
+                <hr color="red">
+                <hr color="red">
+                <br>
+                <h4>Contact with us any time for further information</h4>
+                <p></p>
+                <div class="contact-list">
+                    <li><i class='bx bxs-location-plus'></i> Brgy. Bagongpook, Lipa City, Batangas.</li>
+                    <li><i class='bx bxs-envelope'></i> bcas_2000@yahoo.com</li>
+                    <li><i class='bx bxs-phone'></i> (043)123 4567</li>
+                    <li><i class='bx bxs-mobile'></i></i> 0912 345 6789</li>
+                </div>
+            </div>
+            
+        </section>
+
+
 
 <!-- FOOTER -->
 
