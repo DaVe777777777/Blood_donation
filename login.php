@@ -43,7 +43,7 @@
                                 <input type="password" class="form-control" id="password" name="password" oninput="this.value= this.value.replace(/\s/g, '')"required>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block">Login</button>
-                            <label for="forgotpassword"><a href="forgot.php">Forgot password?</a></label>
+                            <label for="forgotpassword"><a href="fp.php">Forgot password?</a></label>
 
                         </form>
                     </div>

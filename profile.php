@@ -27,9 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $newUsername = $_POST['username'];
         $email = $_POST["email"];
         $mobile = $_POST["mobile"];
+        $secretword = $_POST["secretword"];
 
         // Update username in users table
-        $updateUserQuery = "UPDATE users SET username='$newUsername', email='$email', mobile='$mobile' WHERE username='$username'";
+        $updateUserQuery = "UPDATE users SET username='$newUsername', email='$email', mobile='$mobile', secretword='$secretword' WHERE username='$username'";
         if ($conn->query($updateUserQuery) === TRUE) {
             // Update the session with the new username
             $_SESSION['username'] = $newUsername;
@@ -149,6 +150,12 @@ $conn->close();
                            oninput="this.value=this.value.replace(/[^0-9]/g, '')" required
                            pattern="[0-9]{11}"
                            title="Mobile should have 11 numbers">
+                </div>
+                <div class="form-group">
+                    <label for="secretword">Secret Word:</label>
+                    <input type="secretword" class="form-control" id="secretword" name="secretword"
+                           value="<?php echo $row['secretword']; ?>" oninput="this.value= this.value.replace(/\s/g, '')"
+                           required>
                 </div>
                 <button type="submit" name="update" class="btn btn-primary" onclick="return confirm('Are you sure you want to update your profile?')">Update</button>
 

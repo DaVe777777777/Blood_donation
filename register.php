@@ -46,6 +46,10 @@
                                     pattern="[0-9]{11}"
                                     title="Mobile should have 11 numbers">
                             </div>
+                            <div class="form-group">
+                                <label for="secretword">Secret Word:</label>
+                                <input type="text" class="form-control" id="secretword" name="secretword" oninput="this.value= this.value.replace(/\s/g, '')" required>
+                            </div>
 
                             <button type="submit" class="btn btn-primary btn-block">Register</button>
                         </form>
@@ -70,6 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
     $encpass = md5($password);
     $mobile = $_POST["mobile"];
+    $secretword = $_POST["secretword"];
     
 
     // check if user already exists in the table
@@ -92,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // insert new user into table
-    $insert_query = "INSERT INTO users (username, email, password, mobile) VALUES ('$username','$email', '$encpass','$mobile')";
+    $insert_query = "INSERT INTO users (username, email, password, mobile, secretword) VALUES ('$username','$email', '$encpass','$mobile','$secretword')";
     if ($conn->query($insert_query) === TRUE) {
         // set session variable to indicate user is logged in
         $_SESSION["loggedin"] = true;
