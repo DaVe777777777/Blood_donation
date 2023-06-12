@@ -31,7 +31,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="secretword">Secret Word:</label>
-                                <input type="text" class="form-control" id="secretword" name="secretword" required>
+                                <input type="password" class="form-control" id="secretword" name="secretword" oninput="this.value= this.value.replace(/\s/g, '')" required>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block">Submit</button>
                         </form>
@@ -51,8 +51,9 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = $_POST["username"];
         $secretword = $_POST["secretword"];
+        $encsecretword = md5($secretword);
 
-        $sql = "SELECT * FROM users WHERE username='$username' AND secretword='$secretword'";
+        $sql = "SELECT * FROM users WHERE username='$username' AND secretword='$encsecretword'";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {

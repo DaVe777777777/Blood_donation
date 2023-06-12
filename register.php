@@ -48,7 +48,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="secretword">Secret Word:</label>
-                                <input type="text" class="form-control" id="secretword" name="secretword" oninput="this.value= this.value.replace(/\s/g, '')" required>
+                                <input type="password" class="form-control" id="secretword" name="secretword" oninput="this.value= this.value.replace(/\s/g, '')" required
+                                pattern="^(?=.*[!@#$%^&*])\S{8,12}$"
+                                title="Password must be 8-12 characters long and contain at least one special character (!@#$%^&*)">
                             </div>
 
                             <button type="submit" class="btn btn-primary btn-block">Register</button>
@@ -72,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $email = $_POST["email"];
     $password = $_POST["password"];
-    $encpass = md5($password);
+    $encpass = md5($password, $secretword);
     $mobile = $_POST["mobile"];
     $secretword = $_POST["secretword"];
     
@@ -97,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // insert new user into table
-    $insert_query = "INSERT INTO users (username, email, password, mobile, secretword) VALUES ('$username','$email', '$encpass','$mobile','$secretword')";
+    $insert_query = "INSERT INTO users (username, email, password, mobile, secretword) VALUES ('$username','$email', '$encpass','$mobile','$encpass')";
     if ($conn->query($insert_query) === TRUE) {
         // set session variable to indicate user is logged in
         $_SESSION["loggedin"] = true;

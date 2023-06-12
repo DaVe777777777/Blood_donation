@@ -77,7 +77,7 @@ $username = $_SESSION['username'];
 <?php
 
     include 'connection.php';
-    $records_per_page = 1; // Number of records to display per page
+    $records_per_page = 10; // Number of records to display per page
     $current_page = isset($_GET['page']) ? $_GET['page'] : 1; // Get the current page number
     
     // Calculate the offset for the SQL query

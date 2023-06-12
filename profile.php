@@ -28,9 +28,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST["email"];
         $mobile = $_POST["mobile"];
         $secretword = $_POST["secretword"];
+        $encsecretword = md5($secretword);
+        
 
         // Update username in users table
-        $updateUserQuery = "UPDATE users SET username='$newUsername', email='$email', mobile='$mobile', secretword='$secretword' WHERE username='$username'";
+        $updateUserQuery = "UPDATE users SET username='$newUsername', email='$email', mobile='$mobile', secretword='$encsecretword' WHERE username='$username'";
         if ($conn->query($updateUserQuery) === TRUE) {
             // Update the session with the new username
             $_SESSION['username'] = $newUsername;
@@ -153,9 +155,10 @@ $conn->close();
                 </div>
                 <div class="form-group">
                     <label for="secretword">Secret Word:</label>
-                    <input type="secretword" class="form-control" id="secretword" name="secretword"
-                           value="<?php echo $row['secretword']; ?>" oninput="this.value= this.value.replace(/\s/g, '')"
-                           required>
+                    <input type="password" class="form-control" id="secretword" name="secretword"
+                           oninput="this.value= this.value.replace(/\s/g, '')" 
+                           pattern="^(?=.*[!@#$%^&*])\S{8,12}$"
+                           title="Password must be 8-12 characters long and contain at least one special character (!@#$%^&*)" >
                 </div>
                 <button type="submit" name="update" class="btn btn-primary" onclick="return confirm('Are you sure you want to update your profile?')">Update</button>
 

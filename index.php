@@ -335,10 +335,10 @@ nav .bi {
                 <h4>Contact with us any time for further information</h4>
                 <p></p>
                 <div class="contact-list">
-                    <li><i class='bx bxs-location-plus'></i> Brgy. Bagongpook, Lipa City, Batangas.</li>
-                    <li><i class='bx bxs-envelope'></i> bcas_2000@yahoo.com</li>
-                    <li><i class='bx bxs-phone'></i> (043)123 4567</li>
-                    <li><i class='bx bxs-mobile'></i></i> 0912 345 6789</li>
+                    <li><i class='bx bxs-location-plus'></i> J.P Laurel Highway, Lipa City, Batangas.</li>
+                    <li><i class='bx bxs-envelope'></i> bdms_07@gmail.com</li>
+                    <li><i class='bx bxs-phone'></i> (043)773-6800</li>
+                    <li><i class='bx bxs-mobile'></i></i> 0993 388 5401</li>
                 </div>
             </div>
             
