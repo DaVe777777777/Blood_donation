@@ -8,11 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
+    <link rel="icon" href="trial.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
     crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
@@ -34,9 +35,16 @@
                             <input type="text" class="form-control" id="username" name="username" required>
                         </div>
                         <div class="form-group">
-                            <label for="password">Password:</label>
-                            <input type="password" class="form-control" id="password" name="password" oninput="this.value= this.value.replace(/\s/g, '')" required>
-                        </div>
+                                <label for="password">Password:</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="password" name="password" oninput="this.value= this.value.replace(/\s/g, '')" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text bg-transparent border-0" id="togglePassword">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         <button type="submit" class="btn btn-primary btn-block">Login</button>
                     </form>
                 </div>
@@ -60,6 +68,7 @@ session_start();
 include 'connection.php';
 
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
@@ -71,10 +80,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows > 0) {
         // set session variable to indicate user is logged in
-        // $_SESSION["loggedin"] = true;
         $data = mysqli_fetch_array($result);
         $name = $data['username'];
-        $_SESSION['username'] = $name;
+        $_SESSION['admin_username'] = $name;
 
         // redirect to donation.php
         echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
@@ -106,7 +114,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 }
-
 $conn->close();
 ?>
 
@@ -166,10 +173,33 @@ body{
     outline: none;
     border-radius: 20px;
 }
+.input-group-text {
+        cursor: pointer;
+       
+    }
 
+    .input-group-text i {
+        color: #000; /* Change this to the desired eye icon color */
+        margin-top: 10px;
+    }
+
+    .input-group-text i:hover {
+        color: #007bff; /* Change this to the desired eye icon color on hover */
+    }
 </style>
 </style>
 
+
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+
+    togglePassword.addEventListener('click', function (e) {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        this.querySelector('i').classList.toggle('fa-eye-slash');
+    });
+</script>
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 

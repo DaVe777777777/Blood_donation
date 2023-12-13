@@ -1,12 +1,13 @@
 <?php
+include 'connection.php';
 session_start();
-if(empty($_SESSION['username']))
+if(empty($_SESSION['user_username']))
 {
     header('location:login.php');
 }
-if(!empty($_SESSION['username']))
+if(!empty($_SESSION['user_username']))
 {
-$username = $_SESSION['username'];
+$username = $_SESSION['user_username'];
 }
 ?>
 
@@ -14,47 +15,50 @@ $username = $_SESSION['username'];
 <html lang="en">
 <head>
   <title>DONATE</title>
+  <link rel="icon" href="trial.png">
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <!-- <link rel="stylesheet" href="donator.css"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
-
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
         integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet" />
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet" /> -->
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
 </head>
 <body>
 
 <section class="header">
         <nav>
             <a href="index.php"><img src="trial.png" /></a>
-        
             <div class="nav-links" id="navLinks">
                 <i class="bi bi-x-lg" onclick="hideMenu()"></i>
-                    <ul>
-                        <li><a href="index.php">HOME</a></li>
-                        <li><a href="requirements.php">REQUIREMENTS</a></li>
-                        <li><a href="donator.php">DONATE</a></li>
-                        <li><a href="view_donator.php">REQUEST</a></li>
-                        <li><a href="certificate.php">CERTIFICATE</a></li>
-                        <li><a href="profile.php">PROFILE</a></li>
-                        <li ><a href="logout.php" class="logout-button">LOGOUT</a></li>
-                    </ul>
+            <ul>
+
+                <li><a href="requirements.php">REQUIREMENTS</a></li>
+                <li class="dropdown"> 
+                        <a href="#">DONATION</a> 
+                        <ul class="dropdown-menu"> 
+                            <li><a href="view_donator.php">REQUEST</a></li>
+                            <li><a href="donator.php">DONATE</a></li>
+                        </ul>
+                    </li>
+                <li><a href="certificate.php">CERTIFICATE</a></li>
+                <li><a href="profile.php">PROFILE</a></li>
+                <li ><a href="logout.php" class="logout-button">LOGOUT</a></li>
+            </ul>
             </div>
-                <i class="bi bi-list" onclick="showMenu()"></i>
+            <i class="bi bi-list" onclick="showMenu()"></i>
         </nav>
-</section> 
+</section>
 
 <br>
 <div class="container">
@@ -109,32 +113,9 @@ $username = $_SESSION['username'];
 </div>
 
 <section class="footer">
-<p>&copy; 2023 Blood Donation Management System.</p>
-
-
-<style>
-    /* FOOTER */
-
-.footer{
-    width: 100%;
-    text-align: center;
-    padding: 10px 0;
-    margin-top:15px;
-}
-
-.footer {
-    min-height: 5vh;
-    width: 100%;
-    background-color: red;
-    background-position: center;
-    background-size: cover;
-    position: relative;
-}
-.footer p{
-    color: #fff;
-}
-</style>
+    <h3>&copy; 2023 Blood Donation Management System.</h3>
 </section>
+
 
 
 
@@ -155,8 +136,8 @@ if(isset($_POST['insert-btn']))
         echo '<script>
                 Swal.fire({
                   icon: "warning",
-                  title: "Oops...",
-                  text: "You are not eligible to donate blood. Read requirements.",
+                  title: "Sorry!",
+                  text: "You are not eligible to donate blood. Please read the requirements.",
                   confirmButtonColor: "#dc3545",
                 }).then((result) => {
                   if (result.isConfirmed) {
@@ -168,8 +149,8 @@ if(isset($_POST['insert-btn']))
         echo '<script>
                 Swal.fire({
                   icon: "warning",
-                  title: "Oops...",
-                  text: "You are not eligible to donate blood. Read requirements.",
+                  title: "Sorry!",
+                  text: "You are not eligible to donate blood. Please read the requirements.",
                   confirmButtonColor: "#dc3545",
                 }).then((result) => {
                   if (result.isConfirmed) {
@@ -186,8 +167,8 @@ if(isset($_POST['insert-btn']))
             echo '<script>
                     Swal.fire({
                       icon: "success",
-                      title: "Success!",
-                      text: "Data has been inserted.",
+                      title: "'.$username.'! ",
+                      text: "You are eligible to donate. Please wait for the request to be accepted, Thank You!",
                       confirmButtonColor: "#28a745",
                     });
                   </script>';
@@ -195,7 +176,7 @@ if(isset($_POST['insert-btn']))
             echo '<script>
                     Swal.fire({
                       icon: "error",
-                      title: "Oops...",
+                      title: "Sorry!",
                       text: "Failed, try again.",
                       confirmButtonColor: "#dc3545",
                     });
@@ -213,91 +194,155 @@ if(isset($_POST['insert-btn']))
     font-family: "Roboto", sans-serif;
 }
 
-
 .header {
-    
-    width: 100%;
-    background-color: red ;
-    background-position: center;
-    background-size: cover ;
-    position: relative;
-    height: 26.7vh;
-}
-nav {
-    display: flex;
-    padding: 2% 6%;
-    justify-content: space-between;
-    align-items: left;
-    padding-bottom:21px;
-}
-nav img {
-    width: 100px;
-}
-.nav-links {
-    flex: 1;
-    text-align: right;
-}
-.nav-links ul li {
-    list-style: none;
-    display: inline-block;
-    padding: 35px 12px;
-    position: relative;
-}
-.nav-links ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 14px;
-}
+        width: 100%;
+        background-color: red;
+        background-size: cover;
+        height: 20vh;
+    }
 
-.nav-links ul li a::after {
-    content: "";
-    width: 0%;
-    height: 2px;
-    background: yellow;
-    display: block;
-    margin: auto;
-    transition: 0.5s;
-}
-.nav-links ul li a:hover::after {
-    width: 100%;
-}
+    nav {
+        display: flex;
+        padding: 0% 7%;
+        justify-content: space-between;
+        align-items: center;
+        padding-top:14px;
+    }
 
-.text-box {
-    width: 90%;
-    color: #fff;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    nav img {
+        width: 100px;
+     
+        
+        
+    }
+
+    .nav-links {
+        flex: 1;
+        text-align: center;
+
+    }
+
+    .nav-links ul {
+    padding: 0;
+    margin: 0;
     text-align: center;
 }
-.hero-btn {
-    display: inline-block;
-    text-decoration: none;
-    color: #fff;
-    border: 1px solid #fff;
-    padding: 12px 34px;
-    font-size: 13px;
-    background: transparent;
-    position: relative;
-    cursor: pointer;
+
+    .nav-links ul li {
+        list-style: none;
+        display: inline-block;
+        padding: 0 55px;
+        position: relative;
+    }
+
+    .nav-links ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: bolder;
+    }
+
+    .nav-links ul li a::after {
+        content: "";
+        width: 0%;
+        height: 2px;
+        background: yellow;
+        display: block;
+        margin: auto;
+        transition: 0.5s;
+    }
+
+    .nav-links ul li a:hover::after {
+        width: 100%;
+    }
+
+    .logout-button {
+        display: inline-block;
+        padding: 5px 16px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        background-color: #c0392b;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    .logout-button:hover {
+        background-color: #e74c3c;
+    }
+
+    nav .bi {
+        display: none;
+    }
+
+
+.dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        background-color: red;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        text-align: left;
+        top: 100%;
+        left: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-menu li {
+        margin: 3px;
+        margin-left: 3px;
+    }   
+
+.text-center h2{
+  font-weight:bolder;
+  font-size:50px;
 }
 
-.hero-btn:hover {
-    border: 1px solid #fff;
-    background: yellow;
-    transition: 1s;
+.container{
+  padding-bottom:20px;
 }
-nav .bi {
-    display: none;
+
+.container img{
+  box-shadow: 15px 15px 10px rgba(0, 0, 0, 0.8);
 }
+
+.footer {
+    width: 100%;
+    background-color: red;
+    text-align: center;
+    background-size: cover;
+    color: white;
+    padding: 20px 0;
+    padding-bottom:12px;
+    
+    
+}
+
+.footer h3{
+  font-size: 20px;
+  font-weight:bolder;
+ 
+}
+
 
 
 
   @media (max-width: 768px) {
-    .text-box h1 {
-        font-size: 20px;
-    }
+   
     .nav-links ul li {
         display: block;
         padding: 20px 12px;
@@ -332,24 +377,7 @@ nav .bi {
     }
   }
 
-.logout-button {
-  display: inline-block;
-  padding: 8px 16px;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  color: #fff;
-  background-color: #c0392b;
-  border: none;
-  border-radius: 5px;
-  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.2s ease-in-out;
-}
 
-.logout-button:hover {
-  background-color: #e74c3c;
-}
 </style>
 <script>
         var navLinks = document.getElementById("navLinks");

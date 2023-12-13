@@ -29,7 +29,7 @@ include 'connection.php';
 <body>
 <div class="container d-flex justify-content-center ">
     <div class="table-responsive">
-        <h3 align="center">Forgot Password</h3>
+        <h3 align-items="center">Forgot Password</h3>
         <h6> A reset link will be sent to your email</h6>
         
         <br/>

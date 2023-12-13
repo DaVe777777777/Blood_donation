@@ -1,12 +1,12 @@
 <?php
 session_start();
-if (empty($_SESSION['username'])) {
+if(empty($_SESSION['admin_username'])) {
     header('location: admin_login.php');
-    exit(); // Add exit() to stop executing further code
+    exit;
 }
-
-if (!empty($_SESSION['username'])) {
-    $username = $_SESSION['username'];
+if(!empty($_SESSION['admin_username']))
+{
+    $username = $_SESSION['admin_username'];
 }
 ?>
 
@@ -16,6 +16,7 @@ if (!empty($_SESSION['username'])) {
 <head>
   <title>DONATORS LIST</title>
   <meta charset="utf-8">
+  <link rel="icon" href="trial.png">
   <link rel="stylesheet" href="view_donator.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">

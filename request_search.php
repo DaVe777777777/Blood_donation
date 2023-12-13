@@ -1,13 +1,12 @@
 <?php
 session_start();
-if(empty($_SESSION['username']))
-{
-    header('location:login.php');
-    exit();
+if(empty($_SESSION['admin_username'])) {
+    header('location: admin_login.php');
+    exit;
 }
-if(!empty($_SESSION['username']))
+if(!empty($_SESSION['admin_username']))
 {
-$username = $_SESSION['username'];
+    $username = $_SESSION['admin_username'];
 }
 
 ?>
@@ -16,7 +15,8 @@ $username = $_SESSION['username'];
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>REQUEST LIST</title>
+<title>SEARCH | ADMIN</title>
+<link rel="icon" href="trial.png">
 <meta charset="utf-8">
 <link rel="stylesheet" href="view_donator.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,25 +38,6 @@ $username = $_SESSION['username'];
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet" />
 </head>
 <body>
-
-
-<section class="header">
-        <nav>
-            <a href="dashboard.php"><img src="trial.png" /></a>
-            <div class="nav-links" id="navLinks">
-                <i class="bi bi-x-lg" onclick="hideMenu()"></i>
-            <ul>
-                <li><a href="dashboard.php">DASHBOARD</a></li>
-                <li><a href="donor.php">DONOR</a></li>
-                <li><a href="admin_requirements.php">REQUIREMENTS</a></li>
-                <li><a href="">REQUEST</a></li>
-                <li ><a href="admin_logout.php" class="logout-button">LOGOUT</a></li>
-            </ul>
-            </div>
-            <i class="bi bi-list" onclick="showMenu()"></i>
-        </nav>
-</section>
-
 
 <div class="container mt-4">
 <form method="post" class="mx-auto col-md-6">
@@ -129,7 +110,7 @@ if ($result->num_rows > 0) {
         echo "</tr>";
     }
 } else {
-    echo "<tr><td colspan='7'>No records found</td></tr>";
+    echo "<tr><td colspan='9'>No records found</td></tr>";
 }
 }
 
@@ -188,135 +169,6 @@ function updateStatus(id, status) {
 }
 
 
-
-.header {
-    
-    width: 100%;
-    background-color: red ;
-    background-position: center;
-    background-size: cover ;
-    position: relative;
-    min-height: 10vh;
-}
-nav {
-    display: flex;
-    padding: 2% 6%;
-    justify-content: space-between;
-    align-items: left;
-    padding-bottom:21px;
-}
-nav img {
-    width: 100px;
-}
-.nav-links {
-    flex: 1;
-    text-align: right;
-}
-.nav-links ul li {
-    list-style: none;
-    display: inline-block;
-    padding: 30px 12px;
-    position: relative;
-}
-.nav-links ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.nav-links ul li a::after {
-    content: "";
-    width: 0%;
-    height: 2px;
-    background: yellow;
-    display: block;
-    margin: auto;
-    transition: 0.5s;
-}
-.nav-links ul li a:hover::after {
-    width: 100%;
-}
-
-.text-box {
-    width: 90%;
-    color: #fff;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-.hero-btn {
-    display: inline-block;
-    text-decoration: none;
-    color: #fff;
-    border: 1px solid #fff;
-    padding: 12px 34px;
-    font-size: 13px;
-    background: transparent;
-    position: relative;
-    cursor: pointer;
-}
-
-.hero-btn:hover {
-    border: 1px solid #fff;
-    background: yellow;
-    transition: 1s;
-}
-nav .bi {
-    display: none;
-}
-
-
-
-@media (max-width: 768px) {
-    .text-box h1 {
-        font-size: 20px;
-    }
-    .nav-links ul li {
-        display: block;
-    }
-    .nav-links {
-        position: absolute;
-        background: red;
-        height: 100vh;
-        width: 200px;
-        top: 0;
-        right: -200px;
-        text-align: left;
-        z-index: 2;
-        transition: 1s;
-    }
-
-    nav .bi {
-        display: block;
-        color: #fff;
-        margin: 10px;
-        font-size: 22px;
-        cursor: pointer;
-    }
-    .nav-links ul {
-        padding: 30px;
-    }
-}
-.logout-button {
-  display: inline-block;
-  padding: 8px 16px;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  color: #fff;
-  background-color: #c0392b;
-  border: none;
-  border-radius: 5px;
-  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.2s ease-in-out;
-}
-
-.logout-button:hover {
-  background-color: #e74c3c;
-}
 </style>
 
 <script>

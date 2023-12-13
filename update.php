@@ -1,11 +1,14 @@
 <?php
+include 'connection.php';
 session_start();
-    if (empty($_SESSION['username'])) {
-        header('location:login.php');
-    }
-    if (!empty($_SESSION['username'])) {
-        $username = $_SESSION['username'];
-    }
+if(empty($_SESSION['user_username']))
+{
+    header('location:login.php');
+}
+if(!empty($_SESSION['user_username']))
+{
+$username = $_SESSION['user_username'];
+}
 ?>
 
 
@@ -13,11 +16,15 @@ session_start();
 <html>
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="icon" href="trial.png">
     <title>Update Donator Information</title>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
-    <h2>Update Donator Information</h2>
+<div class="container">
+        <h2 class="mt-4 mb-4">Update Donator Information</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-6 border p-4">
     <?php
 
     include 'connection.php';
@@ -123,5 +130,15 @@ session_start();
 $conn->close();
 }
 ?>
+ </div>
+        </div>
+    </div>
+
+    <style>
+        body {
+            padding-top: 50px;
+            text-align: center;
+        }
+    </style>
 </body>
 </html>

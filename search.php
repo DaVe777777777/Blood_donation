@@ -1,16 +1,20 @@
 <?php
+include 'connection.php';
 session_start();
-            if (empty($_SESSION['username'])) {
-                header('location:login.php');
-            }
-            if (!empty($_SESSION['username'])) {
-                $username = $_SESSION['username'];
-            }
+if(empty($_SESSION['user_username']))
+{
+    header('location:login.php');
+}
+if(!empty($_SESSION['user_username']))
+{
+$username = $_SESSION['user_username'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <title>SEARCH</title>
+  <link rel="icon" href="trial.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">

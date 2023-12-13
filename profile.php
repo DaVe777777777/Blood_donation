@@ -1,16 +1,14 @@
 <?php
-session_start();
-
-if (empty($_SESSION['username'])) {
-    header('location: admin_login.php');
-    exit;
-}
-
-if (!empty($_SESSION['username'])) {
-    $username = $_SESSION['username'];
-}
-
 include 'connection.php';
+session_start();
+if(empty($_SESSION['user_username']))
+{
+    header('location:login.php');
+}
+if(!empty($_SESSION['user_username']))
+{
+$username = $_SESSION['user_username'];
+}
 
 // Fetch user information from the database
 $selectUserQuery = "SELECT * FROM users WHERE username='$username'";
@@ -95,31 +93,40 @@ $conn->close();
 <html lang="en">
 <head>
     <title>PROFILE</title>
+    <link rel="icon" href="trial.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 <section class="header">
-    <nav>
-        <a href="index.php"><img src="trial.png" /></a>
-        <div class="nav-links" id="navLinks">
-            <i class="bi bi-x-lg" onclick="hideMenu()"></i>
+        <nav>
+            <a href="index.php"><img src="trial.png" /></a>
+            <div class="nav-links" id="navLinks">
+                <i class="bi bi-x-lg" onclick="hideMenu()"></i>
             <ul>
-                <li><a href="index.php">HOME</a></li>
+
                 <li><a href="requirements.php">REQUIREMENTS</a></li>
-                <li><a href="donator.php">DONATE</a></li>
-                <li><a href="view_donator.php">REQUEST</a></li>
+                <li class="dropdown"> 
+                        <a href="#">DONATION</a> 
+                        <ul class="dropdown-menu"> 
+                            <li><a href="view_donator.php">REQUEST</a></li>
+                            <li><a href="donator.php">DONATE</a></li>
+                        </ul>
+                    </li>
                 <li><a href="certificate.php">CERTIFICATE</a></li>
                 <li><a href="profile.php">PROFILE</a></li>
-                <li><a href="logout.php" class="logout-button">LOGOUT</a></li>
+                <li ><a href="logout.php" class="logout-button">LOGOUT</a></li>
             </ul>
-        </div>
-        <i class="bi bi-list" onclick="showMenu()"></i>
-    </nav>
+            </div>
+            <i class="bi bi-list" onclick="showMenu()"></i>
+        </nav>
 </section>
+
+
 <div class="container">
     <h2>Welcome, <?php echo $username; ?></h2>
     <?php
@@ -154,12 +161,18 @@ $conn->close();
                            title="Mobile should have 11 numbers">
                 </div>
                 <div class="form-group">
-                    <label for="secretword">Secret Word:</label>
-                    <input type="password" class="form-control" id="secretword" name="secretword"
-                           oninput="this.value= this.value.replace(/\s/g, '')" 
-                           pattern="^(?=.*[!@#$%^&*])\S{8,12}$"
-                           title="Password must be 8-12 characters long and contain at least one special character (!@#$%^&*)" >
-                </div>
+                                <label for="secretword">Secret Word:</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="secretword" name="secretword" oninput="this.value= this.value.replace(/\s/g, '')" required
+                                    pattern="^(?=.*[!@#$%^&*])\S{8,12}$" 
+                                    title="Password must be 8-12 characters long and contain at least one special character (!@#$%^&*)">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text bg-transparent border-0" id="toggleSecret">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                 <button type="submit" name="update" class="btn btn-primary" onclick="return confirm('Are you sure you want to update your profile?')">Update</button>
 
                 <button type="button" class="btn btn-danger" onclick="location.href='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>'">Cancel</button>
@@ -168,23 +181,40 @@ $conn->close();
         <div class="col-md-6">
             <h4>Change Password</h4>
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <div class="form-group">
+                                <label for="currentPassword">Current Password:</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="currentPassword" name="currentPassword" oninput="this.value= this.value.replace(/\s/g, '')" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text bg-transparent border-0" id="togglecurrentPassword">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                 <div class="form-group">
-                    <label for="currentPassword">Current Password:</label>
-                    <input type="password" class="form-control" id="currentPassword" name="currentPassword" oninput="this.value= this.value.replace(/\s/g, '')" required>
-                </div>
-                <div class="form-group">
-                    <label for="newPassword">New Password:</label>
-                    <input type="password" class="form-control" id="newPassword" name="newPassword" required
-                           oninput="this.value= this.value.replace(/\s/g, '')" required
-                           pattern="^(?=.*[!@#$%^&*])\S{8,12}$"
-                           title="Password must be 8-12 characters long and contain at least one special character (!@#$%^&*)">
-                </div>
+                                <label for="NewPassword">New Password:</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="NewPassword" name="NewPassword" oninput="this.value= this.value.replace(/\s/g, '')" required
+                                    pattern="^(?=.*[!@#$%^&*])\S{8,12}$"
+                                    title="Password must be 8-12 characters long and contain at least one special character (!@#$%^&*)">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text bg-transparent border-0" id="toggleNewPassword">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                 <button type="submit" name="changePassword" class="btn btn-primary" onclick="return confirmChangePassword()">Change Password</button>
                 <button type="button" class="btn btn-danger" onclick="location.href='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>'">Cancel</button>
             </form>
         </div>
     </div>
 </div>
+
+<section class="footer">
+        <h3>&copy; 2023 Blood Donation Management System.</h3>
+    </section>
 
 <style>
     /* .success {
@@ -199,43 +229,58 @@ $conn->close();
         margin-bottom: 10px;
     } */
 
-    .header {
+    * {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+.header {
         width: 100%;
         background-color: red;
-        background-position: center;
         background-size: cover;
-        position: relative;
-        height: 26.7vh;
+        height: 20vh;
     }
 
     nav {
         display: flex;
-        padding: 2% 6%;
+        padding: 0% 7%;
         justify-content: space-between;
-        align-items: left;
-        padding-bottom: 21px;
+        align-items: center;
+        padding-top:14px;
     }
 
     nav img {
         width: 100px;
+     
+        
+        
     }
 
     .nav-links {
         flex: 1;
-        text-align: right;
+        text-align: center;
+
     }
+
+    .nav-links ul {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
 
     .nav-links ul li {
         list-style: none;
         display: inline-block;
-        padding: 35px 12px;
+        padding: 0 55px;
         position: relative;
     }
 
     .nav-links ul li a {
-        color: #fff;
+        color: white;
         text-decoration: none;
-        font-size: 14px;
+        font-size: 15px;
+        font-weight: bolder;
     }
 
     .nav-links ul li a::after {
@@ -252,96 +297,154 @@ $conn->close();
         width: 100%;
     }
 
-    .text-box {
-        width: 90%;
-        color: #fff;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-    }
-
-    .hero-btn {
+    .logout-button {
         display: inline-block;
+        padding: 5px 16px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
         text-decoration: none;
-        color: #fff;
-        border: 1px solid #fff;
-        padding: 12px 34px;
-        font-size: 13px;
-        background: transparent;
-        position: relative;
-        cursor: pointer;
+        background-color: #c0392b;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.2s ease-in-out;
     }
 
-    .hero-btn:hover {
-        border: 1px solid #fff;
-        background: yellow;
-        transition: 1s;
+    .logout-button:hover {
+        background-color: #e74c3c;
     }
 
     nav .bi {
         display: none;
     }
 
-    @media (max-width: 768px) {
-        .text-box h1 {
-            font-size: 20px;
-        }
 
-        .nav-links ul li {
-            display: block;
-            padding: 20px 12px;
-        }
-
-        .nav-links {
-            position: absolute;
-            background: red;
-            height: 100vh;
-            width: 200px;
-            top: 0;
-            right: -200px;
-            text-align: left;
-            z-index: 2;
-            transition: 1s;
-        }
-
-        nav .bi {
-            display: block;
-            color: #fff;
-            margin-top: 10px;
-            font-size: 30px;
-            cursor: pointer;
-        }
-
-        nav.black .bi {
-            color: #000;
-        }
-
-        #navLinks {
-            position: fixed;
-        }
+.dropdown {
+        position: relative;
+        display: inline-block;
     }
 
-.logout-button {
-  display: inline-block;
-  padding: 8px 16px;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  color: #fff;
-  background-color: #c0392b;
-  border: none;
-  border-radius: 5px;
-  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.2s ease-in-out;
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        background-color: red;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        text-align: left;
+        top: 100%;
+        left: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-menu li {
+        margin: 3px;
+        margin-left: 3px;
+    }   
+
+    .container{
+        padding:20px;
+    }
+
+    .footer {
+    width: 100%;
+    background-color: red;
+    text-align: center;
+    background-size: cover;
+    color: white;
+    padding: 20px 0;
+    padding-bottom:12px;
+    
+    
 }
 
-.logout-button:hover {
-  background-color: #e74c3c;
+.footer h3{
+  font-size: 20px;
+  font-weight:bolder;
+ 
 }
+
+.input-group-text {
+        cursor: pointer;
+    }
+
+    .input-group-text i {
+        color: #000; /* Change this to the desired eye icon color */
+        
+    }
+
+    .input-group-text i:hover {
+        color: #007bff; /* Change this to the desired eye icon color on hover */
+    }
+    @media (max-width: 768px) {
+
+        .nav-links ul li {
+        display: block;
+        padding: 20px 12px;
+    }
+    .nav-links {
+        position: absolute;
+        background: red;
+        height: 100vh;
+        width: 200px;
+        top: 0;
+        right: -200px;
+        text-align: left;
+        z-index: 2;
+        transition: 1s;
+    }
+
+    nav .bi {
+        display: block;
+        color: #fff;
+        margin: 10px;
+        font-size: 22px;
+        cursor: pointer;
+    }
+    .nav-links ul {
+        padding: 30px;
+    }
+}
+
+
 </style>
+
+<script>
+    const togglecurrentPassword = document.querySelector('#togglecurrentPassword');
+    const toggleNewPassword = document.querySelector('#toggleNewPassword');
+    const toggleSecret = document.querySelector('#toggleSecret');
+    const currentPassword = document.querySelector('#currentPassword');
+    const NewPassword = document.querySelector('#NewPassword');
+    const secretword = document.querySelector('#secretword');
+
+    togglecurrentPassword.addEventListener('click', function (e) {
+        const type = currentPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+        currentPassword.setAttribute('type', type);
+        this.querySelector('i').classList.toggle('fa-eye');
+        this.querySelector('i').classList.toggle('fa-eye-slash');
+    });
+
+    toggleNewPassword.addEventListener('click', function (e) {
+        const type = NewPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+        NewPassword.setAttribute('type', type);
+        this.querySelector('i').classList.toggle('fa-eye');
+        this.querySelector('i').classList.toggle('fa-eye-slash');
+    });
+
+    toggleSecret.addEventListener('click', function (e) {
+        const type = secretword.getAttribute('type') === 'password' ? 'text' : 'password';
+        secretword.setAttribute('type', type);
+        this.querySelector('i').classList.toggle('fa-eye');
+        this.querySelector('i').classList.toggle('fa-eye-slash');
+    });
+</script>
+
 
 <script>
     function showMenu() {

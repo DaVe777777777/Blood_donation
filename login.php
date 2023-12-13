@@ -8,11 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
+    <link rel="icon" href="trial.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
     crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
@@ -39,9 +40,16 @@
                             </div>
                             <div class="form-group">
                                 <label for="password">Password:</label>
-                                
-                                <input type="password" class="form-control" id="password" name="password" oninput="this.value= this.value.replace(/\s/g, '')"required>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="password" name="password" oninput="this.value= this.value.replace(/\s/g, '')" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text bg-transparent border-0" id="togglePassword">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
+
                             <button type="submit" class="btn btn-primary btn-block">Login</button>
                             <label for="forgotpassword"><a href="fp.php">Forgot password?</a></label>
 
@@ -84,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // $_SESSION["loggedin"] = true;
         $data = mysqli_fetch_array($result);
         $name = $data['username'];
-        $_SESSION['username'] = $name;
+        $_SESSION['user_username'] = $name;
 
         // redirect to donation.php
         echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
@@ -121,6 +129,7 @@ $conn->close();
 ?>
 
 <style>
+    
 
 /* .forgot-btn{
     margin-top:10px;
@@ -170,7 +179,7 @@ body{
     margin: 15px;
     border: 1px solid black;
     outline: none;
-    border-radius: 20px;
+    border-radius: 22px;
 }
 
 .btn {
@@ -186,8 +195,32 @@ body{
     border-radius: 20px;
 }
 
+.input-group-text {
+        cursor: pointer;
+       
+    }
+
+    .input-group-text i {
+        color: #000; /* Change this to the desired eye icon color */
+        margin-top: 10px;
+    }
+
+    .input-group-text i:hover {
+        color: #007bff; /* Change this to the desired eye icon color on hover */
+    }
+
 </style>
 
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+
+    togglePassword.addEventListener('click', function (e) {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        this.querySelector('i').classList.toggle('fa-eye-slash');
+    });
+</script>
 
 
     <!-- Bootstrap JS -->

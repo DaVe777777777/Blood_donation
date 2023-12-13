@@ -1,14 +1,16 @@
 <?php
 
+
 session_start();
-if(empty($_SESSION['username']))
-{
-    header('location:admin_login.php');
+if(empty($_SESSION['admin_username'])) {
+    header('location: admin_login.php');
+    exit;
 }
-if(!empty($_SESSION['username']))
+if(!empty($_SESSION['admin_username']))
 {
-$username = $_SESSION['username'];
+    $username = $_SESSION['admin_username'];
 }
+
 
 include 'connection.php';
 

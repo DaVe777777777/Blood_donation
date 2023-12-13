@@ -1,13 +1,14 @@
 <?php
 
+include 'connection.php';
 session_start();
-if(empty($_SESSION['username']))
+if(empty($_SESSION['user_username']))
 {
     header('location:login.php');
 }
-if(!empty($_SESSION['username']))
+if(!empty($_SESSION['user_username']))
 {
-$username = $_SESSION['username'];
+$username = $_SESSION['user_username'];
 }
 
 include 'connection.php';
