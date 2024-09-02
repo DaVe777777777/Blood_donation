@@ -31,8 +31,12 @@ if(!empty($_SESSION['admin_username']))
         integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous" />
     <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet" /> -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 </head>
-<body>
+<body  class="animate__animated animate__fadeIn">
 
 
 <section class="header">
@@ -44,6 +48,7 @@ if(!empty($_SESSION['admin_username']))
                 <li><a href="admin_requirements.php">REQUIREMENTS</a></li>
                 <li><a href="donor.php">DONOR</a></li>
                 <li><a href="">REQUEST</a></li>
+                <li><a href="admin_log.php">ADMIN LOG</a></li>
                 <li ><a href="admin_logout.php" class="logout-button">LOGOUT</a></li>
             </ul>
             </div>
@@ -54,15 +59,15 @@ if(!empty($_SESSION['admin_username']))
 
     <div class="container mt-4">
         
-                <hr color="red">
-                <hr color="red">
-                <h1 class="text-center">REQUEST LIST</h1>
-                <hr color="red">
-                <hr color="red">
+                <hr class=" animate__animated animate__backInLeft " color="red">
+                <hr class=" animate__animated animate__backInLeft "color="red">
+                <h1 class=" animate__animated animate__backInLeft text-center">REQUEST LIST</h1>
+                <hr class=" animate__animated animate__backInLeft "color="red">
+                <hr class=" animate__animated animate__backInLeft "color="red">
                 <a href="request_search.php" class="btn btn-primary"><i class="fas fa-search"></i> SEARCH<a>
 
 
-                <div class="table-responsive mt-4 ">
+                <div class="animate__animated animate__flipInY table-responsive mt-4 ">
                     <table class="table table-striped table-hover table-bordered">
                         <tr>
                             <th>Id</th>
@@ -103,6 +108,7 @@ if(!empty($_SESSION['admin_username']))
                                 echo "<td>
                                             <a href='admin_update.php?id=" . $row['id'] . "' class='btn btn-sm btn-warning'>Update</a>
                                             <a href='admin_delete.php?id=" . $row['id'] . "' onclick='return confirm(\"Are you sure?\")' class='btn btn-sm btn-danger'>Delete</a>
+                                            <a href='admin_view.php?id=" .$row['id']."' class='btn btn-sm btn-primary'>View</a>
                                         </td>";
                                 echo "<td class='status-column'>";
                                 if ($row['status'] == 2) {
@@ -235,7 +241,7 @@ if(!empty($_SESSION['admin_username']))
     .nav-links ul li {
         list-style: none;
         display: inline-block;
-        padding: 0 80px;
+        padding: 0 50px;
         position: relative;
     }
 
@@ -286,6 +292,7 @@ if(!empty($_SESSION['admin_username']))
     font-size:100px;
     font-weight: bolder;
 }
+
 
     
 

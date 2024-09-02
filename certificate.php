@@ -32,33 +32,61 @@ $currentDate = date('F d, Y');
     <link rel="icon" href="trial.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
         integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous" />
+        <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />    
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .text-center {
+            text-align: center;
+        }
+
+        @media print {
+    .btn {
+        display: none;
+    }
+    .logo {
+        display: none;
+    }
+    nav .bi {
+        display: none !important;
+    }
+}
+    </style>
 </head>
-<body>
+<body class="animate__animated animate__fadeIn">
 
 <section class="header">
-    <nav>
-        <a href="index.php"><img src="trial.png" /></a>
-        <div class="nav-links" id="navLinks">
-            <i class="bi bi-x-lg" onclick="hideMenu()"></i>
+<nav>
+            <a href="index.php"><img src="trial.png" /></a>
+            <div class="nav-links" id="navLinks">
+                <i class="bi bi-x-lg" onclick="hideMenu()"></i>
             <ul>
+
                 <li><a href="requirements.php">REQUIREMENTS</a></li>
                 <li class="dropdown"> 
-                    <a href="#">DONATION</a> 
-                    <ul class="dropdown-menu"> 
-                        <li><a href="view_donator.php">REQUEST</a></li>
-                        <li><a href="donator.php">DONATE</a></li>
-                    </ul>
-                </li>
-                <li><a href="certificate.php">CERTIFICATE</a></li>
-                <li><a href="profile.php">PROFILE</a></li>
-                <li><a href="logout.php" class="logout-button">LOGOUT</a></li>
+                        <a href="#">DONATION</a> 
+                        <ul class="dropdown-menu"> 
+                            <li><a href="view_donator.php">REQUEST</a></li>
+                            <li><a href="donator.php">DONATE</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.php">CONTACT</a></li>
+                    <li class="dropdown"> 
+                        <a href="#">USER</a> 
+                        <ul class="dropdown-menu"> 
+                        <li><a href="certificate.php">CERTIFICATE</a></li>
+                        <li><a href="profile.php">PROFILE</a></li>
+                        </ul>
+                    </li>
+                <li ><a href="logout.php" class="logout-button">LOGOUT</a></li>
             </ul>
-        </div>
-        <i class="bi bi-list" onclick="showMenu()"></i>
-    </nav>
+            </div>
+            <i class="bi bi-list" onclick="showMenu()"></i>
+        </nav>
 </section>
 
 <section class="certificate">
@@ -69,7 +97,7 @@ $currentDate = date('F d, Y');
         <p>----------------------------------------------------------------</p>
         <h2><?php echo $name; ?></h2>
         <p>----------------------------------------------------------------</p>
-        <p>to show our appreciation for donating your blood.</p>
+        <p>To show our appreciation for your blood donation and for registering on our website.</p>
         <p>Presented on <?php echo $currentDate; ?></p>
     </div>
 

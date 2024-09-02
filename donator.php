@@ -31,13 +31,17 @@ $username = $_SESSION['user_username'];
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
         integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous" />
     <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet" /> -->
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 
     
 </head>
-<body>
+<body class="animate__animated animate__fadeIn">
 
 <section class="header">
-        <nav>
+<nav>
             <a href="index.php"><img src="trial.png" /></a>
             <div class="nav-links" id="navLinks">
                 <i class="bi bi-x-lg" onclick="hideMenu()"></i>
@@ -51,8 +55,14 @@ $username = $_SESSION['user_username'];
                             <li><a href="donator.php">DONATE</a></li>
                         </ul>
                     </li>
-                <li><a href="certificate.php">CERTIFICATE</a></li>
-                <li><a href="profile.php">PROFILE</a></li>
+                    <li><a href="contact.php">CONTACT</a></li>
+                    <li class="dropdown"> 
+                        <a href="#">USER</a> 
+                        <ul class="dropdown-menu"> 
+                        <li><a href="certificate.php">CERTIFICATE</a></li>
+                        <li><a href="profile.php">PROFILE</a></li>
+                        </ul>
+                    </li>
                 <li ><a href="logout.php" class="logout-button">LOGOUT</a></li>
             </ul>
             </div>
@@ -61,10 +71,10 @@ $username = $_SESSION['user_username'];
 </section>
 
 <br>
-<div class="container">
+<div class="animate__animated animate__flipInY container">
   <div class="row">
     <div class="col-lg-6">
-      <div class="text-center">
+      <div class="animate__animated animate__backInLeft text-center">
         <hr color="red">
         <hr color="red">
         <h2>DONATE BLOOD</h2>
@@ -132,19 +142,28 @@ if(isset($_POST['insert-btn']))
     $weight = $_POST['weight'];
     $unit = $_POST['unit'];
 
-    if ($age < 17) {
-        echo '<script>
-                Swal.fire({
+    if($blood_type == "--SELECT--") {
+      echo '<script>
+              Swal.fire({
+                  icon: "warning",
+                  title: "Warning!",
+                  text: "Please select a valid blood type.",
+                  confirmButtonColor: "#dc3545",
+              });
+            </script>';
+  } elseif ($age < 17) {
+      echo '<script>
+              Swal.fire({
                   icon: "warning",
                   title: "Sorry!",
-                  text: "You are not eligible to donate blood. Please read the requirements.",
+                  text: "You are not too young to donate blood. Please read the requirements.",
                   confirmButtonColor: "#dc3545",
-                }).then((result) => {
+              }).then((result) => {
                   if (result.isConfirmed) {
-                    window.location.href="requirements.php";
+                      window.location.href="requirements.php";
                   }
-                });
-              </script>';
+              });
+            </script>';
     } elseif ($weight < 109) {
         echo '<script>
                 Swal.fire({

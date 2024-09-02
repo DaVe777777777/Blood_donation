@@ -22,14 +22,18 @@ $username = $_SESSION['user_username'];
     <link rel="stylesheet" href="requirements.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
         integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous" />
+        <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />    
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body>
+<body class="animate__animated animate__fadeIn">
 
 <section class="header">
-        <nav>
+<nav>
             <a href="index.php"><img src="trial.png" /></a>
             <div class="nav-links" id="navLinks">
                 <i class="bi bi-x-lg" onclick="hideMenu()"></i>
@@ -43,8 +47,14 @@ $username = $_SESSION['user_username'];
                             <li><a href="donator.php">DONATE</a></li>
                         </ul>
                     </li>
-                <li><a href="certificate.php">CERTIFICATE</a></li>
-                <li><a href="profile.php">PROFILE</a></li>
+                    <li><a href="contact.php">CONTACT</a></li>
+                    <li class="dropdown"> 
+                        <a href="#">USER</a> 
+                        <ul class="dropdown-menu"> 
+                        <li><a href="certificate.php">CERTIFICATE</a></li>
+                        <li><a href="profile.php">PROFILE</a></li>
+                        </ul>
+                    </li>
                 <li ><a href="logout.php" class="logout-button">LOGOUT</a></li>
             </ul>
             </div>
@@ -53,11 +63,11 @@ $username = $_SESSION['user_username'];
 </section>
 
 <section class="req">
-        <hr color="red">
-        <hr color="red">
-        <h1>REQUIREMENTS</h1>
-        <hr color="red">
-        <hr color="red">
+        <hr class="animate__animated animate__backInLeft "color="red">
+        <hr class="animate__animated animate__backInLeft "color="red">
+        <h1 class="animate__animated animate__backInLeft ">REQUIREMENTS</h1>
+        <hr class="animate__animated animate__backInLeft "color="red">
+        <hr class="animate__animated animate__backInLeft "color="red">
         <br>
         <p>To donate blood, individuals need to achieve certain requirements:</p>
       
@@ -239,12 +249,26 @@ $username = $_SESSION['user_username'];
         margin-left: 3px;
     }
 
+    .req h1  {
+    font-size: 16vh;
+    margin: 20px;
+    text-align: center;
+    font-weight: bolder;
+}
 
+hr {
+    border: none;
+    height: 0.5px;
+    background-color: red;
+    margin: 17px 0;
+    font-weight: lighter;
+    
+}
 .req{
     width: 80%;
     margin: auto;
     text-align: center;
-    padding-top: 50px;
+    padding-top: 10px;
 }
 
 .req h1{

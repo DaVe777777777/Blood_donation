@@ -99,11 +99,15 @@ $conn->close();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body>
+<body class="animate__animated animate__fadeIn">
 <section class="header">
-        <nav>
+<nav>
             <a href="index.php"><img src="trial.png" /></a>
             <div class="nav-links" id="navLinks">
                 <i class="bi bi-x-lg" onclick="hideMenu()"></i>
@@ -117,8 +121,14 @@ $conn->close();
                             <li><a href="donator.php">DONATE</a></li>
                         </ul>
                     </li>
-                <li><a href="certificate.php">CERTIFICATE</a></li>
-                <li><a href="profile.php">PROFILE</a></li>
+                    <li><a href="contact.php">CONTACT</a></li>
+                    <li class="dropdown"> 
+                        <a href="#">USER</a> 
+                        <ul class="dropdown-menu"> 
+                        <li><a href="certificate.php">CERTIFICATE</a></li>
+                        <li><a href="profile.php">PROFILE</a></li>
+                        </ul>
+                    </li>
                 <li ><a href="logout.php" class="logout-button">LOGOUT</a></li>
             </ul>
             </div>
@@ -127,7 +137,7 @@ $conn->close();
 </section>
 
 
-<div class="container">
+<div class="animate__animated animate__flipInY container">
     <h2>Welcome, <?php echo $username; ?></h2>
     <?php
     if (isset($_GET['message'])) {

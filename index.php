@@ -35,17 +35,22 @@ if ($row = mysqli_fetch_assoc($result)) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
         integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous" />
     <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet" /> -->
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 </head>
 
-<body>
+<body class="animate__animated animate__fadeIn">
 
 
-    <section class="header">
-        <nav>
+    <section class="animate__animated animate__bounceInRight header">
+    <nav>
             <a href="index.php"><img src="trial.png" /></a>
             <div class="nav-links" id="navLinks">
                 <i class="bi bi-x-lg" onclick="hideMenu()"></i>
             <ul>
+
                 <li><a href="requirements.php">REQUIREMENTS</a></li>
                 <li class="dropdown"> 
                         <a href="#">DONATION</a> 
@@ -54,14 +59,20 @@ if ($row = mysqli_fetch_assoc($result)) {
                             <li><a href="donator.php">DONATE</a></li>
                         </ul>
                     </li>
-                <li><a href="certificate.php">CERTIFICATE</a></li>
-                <li><a href="profile.php">PROFILE</a></li>
+                    <li><a href="contact.php">CONTACT</a></li>
+                    <li class="dropdown"> 
+                        <a href="#">USER</a> 
+                        <ul class="dropdown-menu"> 
+                        <li><a href="certificate.php">CERTIFICATE</a></li>
+                        <li><a href="profile.php">PROFILE</a></li>
+                        </ul>
+                    </li>
                 <li ><a href="logout.php" class="logout-button">LOGOUT</a></li>
             </ul>
             </div>
             <i class="bi bi-list" onclick="showMenu()"></i>
         </nav>
-        <div class="text-box">
+        <div class="animate__animated animate__bounceInRight text-box">
             <h1>DONATE BLOOD,</h1>
             <h1>SAVE LIFE.</h1>
             <br>
@@ -113,7 +124,10 @@ if ($row = mysqli_fetch_assoc($result)) {
                 <li><i class='bx bxs-envelope'></i> bdms_07@gmail.com</li>
                 <li><i class='bx bxs-phone'></i> (043)773-6800</li>
                 <li><i class='bx bxs-mobile'></i></i> 0993 388 5401</li>
+                <a href="contact.php" class="hero-btn">CONTACT US</a>
+
             </div>
+            
         </div>
 
     </section>
@@ -289,6 +303,11 @@ if ($row = mysqli_fetch_assoc($result)) {
         .info-col {
             flex-basis: 48%;
             padding: 30px 2px;
+            
+        }
+
+        .info-col img{
+            box-shadow: 15px 15px 10px rgba(0, 0, 0, 0.8);
         }
 
         .info-col img {
@@ -314,7 +333,7 @@ if ($row = mysqli_fetch_assoc($result)) {
         .contact {
             margin: 100px auto;
             width: 80%;
-            height: 180px;
+            height: 250px;
             background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(contact.jpg);
             background-position: center;
             background-size: cover;

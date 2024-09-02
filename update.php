@@ -74,7 +74,7 @@ $username = $_SESSION['user_username'];
         // retrieve the data from the query result
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            $blood_type = $row['blood_type'];
+            $selectedBloodType = $row['blood_type'];
             $age = $row['age'];
             $weight = $row['weight'];
             $unit = $row['unit'];
@@ -89,9 +89,9 @@ $username = $_SESSION['user_username'];
             <input type="hidden" name="id" value="<?php echo $id; ?>">
 
             <div class="form-group">
-                <label for="dropdown">Blood Type:</label>
-                <select id="dropdown" class="form-control" name="blood_type" value="<?php echo $blood_type; ?>">
-                    <option>--SELECT--</option>
+            <label for="blood_type">Blood Type:</label>
+            <select id="blood_type" class="form-control" name="blood_type">
+            <option value="<?php echo $selectedBloodType; ?>"><?php echo $selectedBloodType; ?> </option>
                     <option>A</option>
                     <option>B</option>
                     <option>AB</option>

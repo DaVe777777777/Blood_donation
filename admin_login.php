@@ -84,6 +84,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $name = $data['username'];
         $_SESSION['admin_username'] = $name;
 
+        $logTime = date("Y-m-d H:i:s"); // Get current date and time
+    $logActivity = "IN"; // Indicates login
+    $insertLogQuery = "INSERT INTO admin_log (admin_name, activity, login_time) VALUES ('$name', '$logActivity', '$logTime')";
+    $conn->query($insertLogQuery);
+
         // redirect to donation.php
         echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
         echo '<script>

@@ -35,53 +35,64 @@ $username = $_SESSION['user_username'];
     <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet" /> -->
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 </head>
-<body>
+<body class="animate__animated animate__fadeIn">
 
 
 <section class="header">
-    <nav>
-        <a href="index.php"><img src="trial.png" /></a>
-        <div class="nav-links" id="navLinks">
-            <i class="bi bi-x-lg" onclick="hideMenu()"></i>
+<nav>
+            <a href="index.php"><img src="trial.png" /></a>
+            <div class="nav-links" id="navLinks">
+                <i class="bi bi-x-lg" onclick="hideMenu()"></i>
             <ul>
+
                 <li><a href="requirements.php">REQUIREMENTS</a></li>
                 <li class="dropdown"> 
-                    <a href="#">DONATION</a> 
-                    <ul class="dropdown-menu"> 
-                        <li><a href="view_donator.php">REQUEST</a></li>
-                        <li><a href="donator.php">DONATE</a></li>
-                    </ul>
-                </li>
-                <li><a href="certificate.php">CERTIFICATE</a></li>
-                <li><a href="profile.php">PROFILE</a></li>
-                <li><a href="logout.php" class="logout-button">LOGOUT</a></li>
+                        <a href="#">DONATION</a> 
+                        <ul class="dropdown-menu"> 
+                            <li><a href="view_donator.php">REQUEST</a></li>
+                            <li><a href="donator.php">DONATE</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.php">CONTACT</a></li>
+                    <li class="dropdown"> 
+                        <a href="#">USER</a> 
+                        <ul class="dropdown-menu"> 
+                        <li><a href="certificate.php">CERTIFICATE</a></li>
+                        <li><a href="profile.php">PROFILE</a></li>
+                        </ul>
+                    </li>
+                <li ><a href="logout.php" class="logout-button">LOGOUT</a></li>
             </ul>
-        </div>
-        <i class="bi bi-list" onclick="showMenu()"></i>
-    </nav>
+            </div>
+            <i class="bi bi-list" onclick="showMenu()"></i>
+        </nav>
 </section>
 
 
 
 <div class="container mt-4">
     
-    <hr color="red">
-    <hr color="red">
-    <h1 class="text-center">REQUEST LIST</h1>
-    <hr color="red">
-    <hr color="red">
+    <hr class=" animate__animated animate__backInLeft " color="red">
+    <hr  class=" animate__animated animate__backInLeft "color="red">
+    <h1 class=" animate__animated animate__backInLeft text-center">REQUEST LIST</h1>
+    <hr  class=" animate__animated animate__backInLeft "color="red">
+    <hr  class=" animate__animated animate__backInLeft "color="red">
     <div class="d-flex justify-content-between mb-4">
         <div>
-            <a href="view_search.php" class="btn btn-primary"><i class="fas fa-search"></i> Search</a>  
+            <a href="view_search.php" class="animate__animated animate__flipInY btn btn-primary"><i class="animate__animated animate__flipInY fas fa-search"></i> Search</a>  
         </div>
         <div>
-        <a href="donator.php" class="btn btn-primary"><i class="fas fa-plus"></i> Add New Request</a>
+        <a href="donator.php" class="animate__animated animate__flipInY btn btn-primary"><i class="animate__animated animate__flipInY fas fa-plus"></i> Add New Request</a>
         </div>
     </div>
     
 
-    <div class="table-responsive mt-4">
+    <div class="animate__animated animate__flipInY table-responsive mt-4 ">
         <table class="table table-striped table-hover table-bordered">
         <tr>
     <th>Id</th>
@@ -119,6 +130,7 @@ $username = $_SESSION['user_username'];
             echo "<td>
                     <a href='update.php?id=".$row['id']."' ' class='btn btn-sm btn-warning'>Update</a>
                     <a href='delete.php?id=".$row['id']."' onclick='return confirm(\"Are you sure?\")' class='btn btn-sm btn-danger'>Delete</a>
+                    <a href='view.php?id=" .$row['id']."' class='btn btn-sm btn-primary'>View</a>
                 </td>";
                 echo "<td class='status-column'>";
                 if ($row['status'] == 2) {

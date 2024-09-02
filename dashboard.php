@@ -44,9 +44,12 @@ if ($requestCountResult && $requestCountResult->num_rows > 0) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
         integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      /> 
 </head>
-<body>
+<body class="animate__animated animate__fadeIn">
 
 
 <section class="header">
@@ -58,15 +61,16 @@ if ($requestCountResult && $requestCountResult->num_rows > 0) {
                 <li><a href="admin_requirements.php">REQUIREMENTS</a></li>
                 <li><a href="donor.php">DONOR</a></li>
                 <li><a href="request.php">REQUEST</a></li>
+                <li><a href="admin_log.php">ADMIN LOG</a></li>
                 <li ><a href="admin_logout.php" class="logout-button">LOGOUT</a></li>
             </ul>
             </div>
             <i class="bi bi-list" onclick="showMenu()"></i>
         </nav>
 
-        <div id="welcome">WELCOME ADMIN</div>
+        <div class="animate__animated animate__backInDown" id="welcome">WELCOME ADMIN</div>
 
-        <div class="status">
+        <div class="animate__animated animate__flip status">
             <div class="box">
                 <i class="fa-solid fa-user"></i>
                 <div class="box-title">TOTAL USERS</div>
@@ -138,7 +142,7 @@ if ($requestCountResult && $requestCountResult->num_rows > 0) {
         .nav-links ul li {
             list-style: none;
             display: inline-block;
-            padding: 0 80px;
+            padding: 0 50px;
             position: relative;
         }
 
@@ -275,7 +279,7 @@ if ($requestCountResult && $requestCountResult->num_rows > 0) {
             background-size: cover;
             padding: 20px 0;
             color:white;
-            margin-top:70.5px;
+            margin-top:6.5rem;
 
         }
 
